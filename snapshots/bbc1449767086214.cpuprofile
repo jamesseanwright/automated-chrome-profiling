@@ -10,7 +10,7 @@
     "children": [
       {
         "functionName": "InjectedScript.evaluate",
-        "scriptId": "147",
+        "scriptId": "107",
         "url": "",
         "lineNumber": 662,
         "columnNumber": 23,
@@ -19,7 +19,7 @@
         "children": [
           {
             "functionName": "InjectedScript._evaluateAndWrap",
-            "scriptId": "147",
+            "scriptId": "107",
             "url": "",
             "lineNumber": 806,
             "columnNumber": 31,
@@ -28,7 +28,7 @@
             "children": [
               {
                 "functionName": "InjectedScript._evaluateOn",
-                "scriptId": "147",
+                "scriptId": "107",
                 "url": "",
                 "lineNumber": 843,
                 "columnNumber": 26,
@@ -46,7 +46,7 @@
                     "children": [
                       {
                         "functionName": "",
-                        "scriptId": "148",
+                        "scriptId": "108",
                         "url": "",
                         "lineNumber": 1,
                         "columnNumber": 1,
@@ -64,7 +64,7 @@
                             "children": [],
                             "positionTicks": [
                               {
-                                "line": 3,
+                                "line": 4,
                                 "ticks": 1
                               }
                             ],
@@ -101,12 +101,12 @@
     "deoptReason": "",
     "id": 1
   },
-  "startTime": 23892.741248,
-  "endTime": 23892.90814,
+  "startTime": 24252.491463,
+  "endTime": 24252.536375,
   "samples": [
     7
   ],
   "timestamps": [
-    23892903578
+    24252534382
   ]
 }
