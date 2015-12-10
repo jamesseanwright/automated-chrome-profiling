@@ -1,3 +1,5 @@
+'use strict';
+
 var chrome = require('./chrome');
 
 module.exports = [
@@ -7,8 +9,8 @@ module.exports = [
 
 		execute: function clothing() {
 			return chrome.startCapture(this)
-				.then(function (evaluate) {
-					evaluate(function () {
+				.then(function () {
+					return chrome.evaluate(function () {
 						document.body.style.background = 'blue';
 					});
 				});

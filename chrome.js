@@ -1,24 +1,24 @@
+'use strict';
+
 var Chrome = require('chrome-remote-interface');
+var writeResultsToFile = require('./writeResultsToFile');
 
 module.exports = {
 	startCapture: function startCapture(test) {
+		var self = this;
+		this.test = test;
 		console.log('Executing ' + test.name + ' (' + test.url + ')...');
 
 		return new Promise(function (resolve, reject) {
 			Chrome(function onChrome(chrome) {
+				self.chrome = chrome;
 				console.log('Connected to Chrome!');
 
 				chrome.Page.loadEventFired(function onLoad() {
 					console.log('Page has loaded!');
-					resolve(evaluate.bind(chrome));
+					resolve();
 				});
 
-				chrome.Profiler.consoleProfileStarted(function () {
-					console.log('Profiling started!');
-				});
-
-				chrome.Profiler.consoleProfileFinished(logResults);
-				
 				chrome.once('ready', function () {
 					chrome.Page.navigate({ url: test.url });
 				});
@@ -29,20 +29,26 @@ module.exports = {
 				reject(new Error('Can\'t connect to Chrome!'));
 			});
 		});
+	},
+
+	evaluate: function evaluate(func) {
+		var chrome = this.chrome;
+		var test = this.test;
+		var iife = '(' + func + '());';
+
+		return new Promise(function (resolve, reject) {
+			chrome.Profiler.consoleProfileStarted(function () {
+				console.log('Profiling started!');
+			});
+
+			chrome.Profiler.consoleProfileFinished(function (params) {
+				writeResultsToFile(test, params);
+				resolve();
+			});
+
+			console.log('Evaluating...');
+
+			chrome.Runtime.evaluate({ expression: 'console.profile();' + iife + 'console.profileEnd();' });
+		});
 	}
-}
-
-function evaluate(func) {
-	var chrome = this;
-	var iife = '(' + func + '());';
-
-	console.log('Evaluating...')
-
-	chrome.Runtime.evaluate({ expression: 'console.profile();' + iife });
-	chrome.Runtime.evaluate({ expression: 'console.profileEnd();' });
-
-}
-
-function logResults(params) {
-	console.log(params);
 }
