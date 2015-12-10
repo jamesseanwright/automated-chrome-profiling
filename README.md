@@ -1,6 +1,6 @@
 # Automated Chrome Profiling
 
-An prototype of automated Chrome/V8 profiling. Inspired by Paul Irish's [repo](https://github.com/paulirish/automated-chrome-profiling) of the same name, using [chrome-remote-interface](https://github.com/cyrus-and/chrome-remote-interface).
+A prototype of automated Chrome/V8 profiling. Inspired by Paul Irish's [repo](https://github.com/paulirish/automated-chrome-profiling) of the same name, using [chrome-remote-interface](https://github.com/cyrus-and/chrome-remote-interface).
 
 ## Setup
 
