@@ -6,9 +6,11 @@ var chromeBinary = '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chro
 function main() {
 	startChrome();
 	
-	runTests().then(function () {
-		process.exit(0);
-	});
+	setTimeout(function () {
+			runTests();
+	}, 10000);
+
+
 }
 
 function startChrome() {
@@ -18,7 +20,10 @@ function startChrome() {
 function runTests() {
 	return Promise.all(tests.map(function (test) {
 		return test.execute();
+	})).catch(function (error) {
+		throw error;
 	});
 }
 
 main();
+var keepAlive = require('net').createServer().listen();

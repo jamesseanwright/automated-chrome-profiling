@@ -6,9 +6,9 @@ module.exports = [
 		url: 'http://localhost:8082/en-gb/mens/clothing',
 
 		execute: function clothing() {
-			chrome.startCapture(this.name)
+			return chrome.startCapture(this)
 				.then(function (evaluate) {
-					return evaluate(function () {
+					evaluate(function () {
 						alert('hello!');
 					});
 				});
