@@ -9,7 +9,7 @@ module.exports = [
 			return chrome.startCapture(this)
 				.then(function (evaluate) {
 					evaluate(function () {
-						alert('hello!');
+						document.body.style.background = 'blue';
 					});
 				});
 		}

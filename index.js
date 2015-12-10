@@ -2,12 +2,13 @@ var tests = require('./tests');
 var spawn = require('child_process').spawn;
 
 var chromeBinary = '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome';
+var keepAlive = require('net').createServer().listen();
 
 function main() {
 	startChrome();
 	
 	setTimeout(function () {
-			runTests();
+		runTests();
 	}, 10000);
 
 
@@ -26,4 +27,3 @@ function runTests() {
 }
 
 main();
-var keepAlive = require('net').createServer().listen();
